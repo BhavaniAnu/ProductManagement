@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="row" *ngIf="listProducts.length !== 0">      
+        <div class="col-sm-4" *ngFor="let list of listProducts">
+            <div class="card" style="width: 18rem;"> 
+                <img class="card-img-top" src="{{ list.image }}" alt="Image Upload" height="300" width="300" >
+                <div class="card-body">
+                    <h6 class="card-title">{{ list.name }}</h6>
+                    <p>{{ list.description}}</p>
+                    <h6 class="card-text">{{ list.price }}</h6>
+                </div>
+            </div>
+        </div> 
+    </div>
+    <div class="justify-content-center" *ngIf="listProducts.length === 0">
+        <h1>No Products To Show</h1><br>
+        <button class="btn btn-primary" (click)="onAdd()">Add Products</button>
+    </div>
+</div>

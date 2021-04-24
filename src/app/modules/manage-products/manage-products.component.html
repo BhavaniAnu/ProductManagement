@@ -1,0 +1,54 @@
+<div class="container">
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+        <div class="form-row">
+            <div class="col">
+                <label for="pname">Product name</label>
+                <input id="pname" type="text" class="form-control" formControlName="name" placeholder="Enter product name">
+            </div>
+            <div class="col">
+                <label for="price">Price </label>
+                <input id="price" type="number" class="form-control" formControlName="price" placeholder="Enter Price">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <label for="description">Product description(optional)</label>
+                <textarea id="description" rows="3" class="form-control" formControlName="description" placeholder="Enter description"></textarea>
+            </div>
+            <div class="col">
+                <label for="imageUpload">Product Image(optional) </label>
+                <input id="imageUpload" type="file" class="form-control" #fileInput (change)="uploadFile($event)" placeholder="Choose File">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary" >Add Product</button>
+    </form>
+
+    <div class="row m-0 mt-5 content-box">
+        <div class="col-md-12 p-0">
+          <table class="table table-hover" >
+            <thead>
+              <th></th>
+              <th>name</th>
+              <th>Description</th>
+              <th >Price</th>
+              <th></th>
+            </thead>
+            <tbody *ngIf="listProducts">
+                <tr *ngFor="let list of listProducts">
+                    <td><img src="{{ list.image }}" id="bannerImg" alt="logo" width="100" height="100"></td>
+                    <td>{{list.name}}</td>
+                    <td>{{list.description}}</td>
+                    <td>{{list.price}}</td>
+                    <td class="edit-btn">
+                        <button class="btn btn-link" (click)="onRemove(list)">Remove</button>
+                    </td>
+                </tr>
+            </tbody>
+            <div class="d-flex justify-content-center" *ngIf="listProducts.length == 0">
+                <h5 >No Items added</h5>
+            </div>
+          </table>
+        </div>
+    </div>
+</div>
+
